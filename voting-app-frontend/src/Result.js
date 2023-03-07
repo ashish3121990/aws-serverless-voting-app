@@ -156,49 +156,7 @@ useEffect(() => {
       });
   };
 
-  let runPlanB = (postId) => {
-    fetch(`${dev_url}planb?state_id=${postId}`, {
-      method: "POST",
-    })      
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Selected State : ", postId, ", Plan B");
-        console.log("Response : ", res);
-      });
-  };
 
-  let runPlanC = (postId) => {
-    fetch(`${dev_url}planc?state_id=${postId}`, {
-      method: "POST",
-    })      
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Selected State : ", postId, ", Plan C");
-        console.log("Response : ", res);
-      });
-  };
-
-  let runPlanD = (postId) => {
-    fetch(`${dev_url}pland?state_id=${postId}`, {
-      method: "POST",
-    })      
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Selected State : ", postId, ", Plan D");
-        console.log("Response : ", res);
-      });
-  };
-
-  let runPlanE = (postId) => {
-    fetch(`${dev_url}plane?state_id=${postId}`, {
-      method: "POST",
-    })      
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("Selected State : ", postId, ", Plan E");
-        console.log("Response : ", res);
-      });
-  };
   useEffect(() => {
     let postsArray = JSON.parse(JSON.stringify(posts));
     let userData = [];

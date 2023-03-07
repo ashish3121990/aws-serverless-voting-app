@@ -28,6 +28,42 @@ function App() {
     { }
   ]); 
 
+  //#############################################
+
+  useEffect(() => {
+    //const interval = setInterval(() => {
+    fetch(fetch_url)
+      .then((res) => res.json())
+      .then((res) => {
+        //console.log(res.json);
+        setPosts(res);
+        console.log("Response From Fetch API: ", res);
+      });
+   // }; ,60000);
+    //return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    let postsArray = JSON.parse(JSON.stringify(posts));
+    let userData = [];
+    postsArray.map((item, index) => {
+      item.state_id = (
+          <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>
+          <MyComponent cat_id={item.vote_id} votes={item.votecount}/>  
+          <div>
+    </div>
+
+
+          </div>
+
+          
+        );
+      userData.push(item);
+    });
+    setUsersForRender(userData);
+  }, [posts]);
+
+  //#############################################
+
   let voteforcat = (postId) => {
     fetch(`https://m4jg81zh19.execute-api.us-west-1.amazonaws.com/dev/vote?vote_id=${postId}`, {
       method: "POST",
@@ -81,6 +117,16 @@ function App() {
             onClick={() => voteforcat('Cat-1')}
           >Vote
           </div>
+
+          <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>
+          <MyComponent cat_id={item.vote_id} votes={item.votecount}/>  
+          <div>
+    </div>
+
+
+          </div>
+
+
      </div>
 	  
      <div className="col-md-4">
