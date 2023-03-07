@@ -1,8 +1,12 @@
 import { MDBDataTable } from "mdbreact";
 //import { useEffect, useState } from "react";
 //import React from 'react';
-import { MyComponent } from './MyComponent';
+import { CatPictures } from './CatPictures';
 import React, { useState, useEffect } from "react";
+import Cat_1 from './cat12.jpg';
+import cat6 from './cat6.jpg';
+import cat30 from './cat30.jpg';
+//import { StyleSheet, View, Text, Button } from 'react-native'
 
 const Test1 = () => {
   const [data, setData] = useState(null);
@@ -18,6 +22,11 @@ const Test1 = () => {
       });
   }, []);
 */
+
+const refreshPage = ()=>{
+  window.location.reload();
+}
+
 let voteforcat = (postId) => {
   fetch(`https://m4jg81zh19.execute-api.us-west-1.amazonaws.com/dev/vote?vote_id=${postId}`, {
     method: "POST",
@@ -26,6 +35,10 @@ let voteforcat = (postId) => {
     .then((res) => {
       console.log("Voted For : ", postId);
       console.log("Response : ", res);
+      //console.log("Refreshing Page");
+      //window.location.reload();
+      refreshPage();
+      //console.log("Page Refreshed");
     });
 };
 
@@ -43,10 +56,15 @@ let voteforcat = (postId) => {
   return (
     <div>
       {data ? (
-        <div>
+              <div className="container">
+              <div className="row">	
           {data.map((item) => (
-            <div key={item.vote_id}>
-                      <div
+
+            <div className="col-md-4" key={item.vote_id}>
+            <h2>{item.vote_id}</h2>
+            <CatPictures cat_id={item.vote_id} /> 
+            <br></br><br></br>            
+            <div
             className="btn btn-primary"
             style={{
               cursor: "pointer",
@@ -56,13 +74,13 @@ let voteforcat = (postId) => {
               borderRadius: ".3rem",
               background: "#8fd8f2",
             }}
-            onClick={() => voteforcat('Cat-2')}
-          >{item.vote_id}
+            onClick={() => voteforcat(item.vote_id) }
+          >Vote
           </div>
-              <h1>{item.vote_id} {item.votecount}</h1>    
+              <h1>Votes {item.votecount}</h1>    
             </div>
           ))}
-        </div>
+        </div></div>
       ) : (
         <p>Loading...</p>
       )}
