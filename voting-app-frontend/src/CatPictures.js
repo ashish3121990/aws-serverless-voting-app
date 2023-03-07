@@ -1,5 +1,3 @@
-//import { MDBDataTable } from "mdbreact";
-//import { useEffect, useState } from "react";
 import React from 'react';
 import cat12 from './cat12.jpg';
 import cat6 from './cat6.jpg';
